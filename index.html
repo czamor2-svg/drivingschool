@@ -1,0 +1,758 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8"/>
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Bally's Auto School – West Hempstead, Long Island</title>
+  <link href="https://fonts.googleapis.com/css2?family=Barlow+Condensed:wght@400;500;600;700;800;900&family=Barlow:wght@300;400;500;600&display=swap" rel="stylesheet"/>
+  <style>
+    :root {
+      --black:   #0A0A0A;
+      --dark:    #111318;
+      --card:    #1A1D24;
+      --red:     #E8302A;
+      --red2:    #FF4A44;
+      --yellow:  #F5C518;
+      --white:   #FFFFFF;
+      --gray:    #8A929E;
+      --light:   #F4F6F8;
+      --border:  #2A2D35;
+      --text:    #E8EAF0;
+    }
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+    html { scroll-behavior: smooth; }
+    body {
+      font-family: 'Barlow', sans-serif;
+      background: var(--dark);
+      color: var(--text);
+      overflow-x: hidden;
+    }
+
+    /* ── NAV ── */
+    nav {
+      position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+      display: flex; align-items: center; justify-content: space-between;
+      padding: 0 4rem; height: 70px;
+      background: rgba(10,10,10,0.95);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border);
+    }
+    .nav-logo {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.3rem; font-weight: 800;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--white);
+    }
+    .nav-logo span { color: var(--red); }
+    .nav-links { display: flex; gap: 2.5rem; list-style: none; }
+    .nav-links a {
+      font-size: 0.82rem; font-weight: 500;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--gray); text-decoration: none;
+      transition: color 0.2s;
+    }
+    .nav-links a:hover { color: var(--white); }
+    .nav-cta {
+      padding: 0.6rem 1.6rem;
+      background: var(--red); color: var(--white);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.9rem; font-weight: 700;
+      letter-spacing: 0.12em; text-transform: uppercase;
+      text-decoration: none;
+      transition: background 0.2s, transform 0.2s;
+    }
+    .nav-cta:hover { background: var(--red2); transform: translateY(-1px); }
+
+    /* ── HERO ── */
+    .hero {
+      min-height: 100vh;
+      display: grid; grid-template-columns: 1fr 1fr;
+      align-items: center;
+      padding: 7rem 4rem 4rem;
+      gap: 4rem;
+      position: relative; overflow: hidden;
+      background: var(--black);
+    }
+
+    /* Road lines */
+    .hero-road {
+      position: absolute; bottom: 0; left: 0; right: 0; height: 8px;
+      background: repeating-linear-gradient(90deg, var(--yellow) 0px, var(--yellow) 60px, transparent 60px, transparent 120px);
+      opacity: 0.6;
+    }
+
+    /* Diagonal accent */
+    .hero-geo {
+      position: absolute; top: 0; right: 0; bottom: 0; width: 55%;
+      background: linear-gradient(160deg, #1A1D24 0%, #111318 100%);
+      clip-path: polygon(15% 0, 100% 0, 100% 100%, 0% 100%);
+    }
+    .hero-geo::before {
+      content: '';
+      position: absolute; inset: 0;
+      background: repeating-linear-gradient(
+        -55deg,
+        transparent, transparent 40px,
+        rgba(232,48,42,0.03) 40px, rgba(232,48,42,0.03) 41px
+      );
+    }
+
+    /* Red accent line */
+    .hero-accent {
+      position: absolute; top: 0; left: 0; bottom: 0; width: 4px;
+      background: linear-gradient(to bottom, transparent, var(--red), transparent);
+    }
+
+    .hero-content { position: relative; z-index: 2; }
+
+    .hero-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.8rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.75rem; font-weight: 600;
+      letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--red); margin-bottom: 1.5rem;
+    }
+    .hero-eyebrow::before { content: ''; width: 24px; height: 2px; background: var(--red); }
+
+    .hero h1 {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(3.5rem, 6vw, 5.5rem);
+      font-weight: 900; line-height: 0.95;
+      text-transform: uppercase; letter-spacing: 0.02em;
+      color: var(--white); margin-bottom: 1.4rem;
+    }
+    .hero h1 .red { color: var(--red); }
+    .hero h1 .outline {
+      -webkit-text-stroke: 2px var(--white);
+      color: transparent;
+    }
+
+    .hero-desc {
+      font-size: 1rem; font-weight: 300;
+      line-height: 1.8; color: var(--gray);
+      max-width: 460px; margin-bottom: 2.5rem;
+    }
+
+    .hero-actions { display: flex; gap: 1rem; flex-wrap: wrap; margin-bottom: 3rem; }
+
+    .btn-red {
+      padding: 1rem 2.5rem;
+      background: var(--red); color: var(--white);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      text-decoration: none; border: 2px solid var(--red);
+      transition: all 0.25s;
+    }
+    .btn-red:hover { background: transparent; color: var(--red); }
+    .btn-ghost {
+      padding: 1rem 2.5rem;
+      background: transparent; color: var(--white);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      text-decoration: none; border: 2px solid var(--border);
+      transition: all 0.25s;
+    }
+    .btn-ghost:hover { border-color: var(--white); }
+
+    .hero-stats {
+      display: flex; gap: 2.5rem; padding-top: 2rem;
+      border-top: 1px solid var(--border);
+    }
+    .stat-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 2rem; font-weight: 900; color: var(--white);
+      line-height: 1;
+    }
+    .stat-num span { color: var(--red); }
+    .stat-label {
+      font-size: 0.72rem; font-weight: 400;
+      letter-spacing: 0.1em; color: var(--gray);
+      text-transform: uppercase; margin-top: 0.3rem;
+    }
+
+    /* Hero right */
+    .hero-right { position: relative; z-index: 2; }
+
+    .booking-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      border-top: 3px solid var(--red);
+      padding: 2rem;
+    }
+    .booking-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.3rem; font-weight: 800;
+      letter-spacing: 0.08em; text-transform: uppercase;
+      color: var(--white); margin-bottom: 0.3rem;
+    }
+    .booking-sub {
+      font-size: 0.82rem; font-weight: 300;
+      color: var(--gray); margin-bottom: 1.5rem;
+    }
+    .form-group { margin-bottom: 1rem; }
+    .form-label {
+      display: block; font-size: 0.65rem; font-weight: 600;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      color: var(--gray); margin-bottom: 0.4rem;
+    }
+    .form-input {
+      width: 100%; padding: 0.8rem 1rem;
+      background: var(--dark); border: 1px solid var(--border);
+      color: var(--white); font-family: 'Barlow', sans-serif;
+      font-size: 0.9rem; outline: none;
+      transition: border-color 0.2s; appearance: none;
+    }
+    .form-input:focus { border-color: var(--red); }
+    .form-input::placeholder { color: #444; }
+    .form-row { display: grid; grid-template-columns: 1fr 1fr; gap: 0.8rem; }
+    .btn-book {
+      width: 100%; padding: 1rem;
+      background: var(--red); color: var(--white);
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem; font-weight: 700;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      border: none; cursor: pointer;
+      transition: background 0.2s; margin-top: 0.5rem;
+    }
+    .btn-book:hover { background: var(--red2); }
+
+    /* ── MARQUEE ── */
+    .marquee-strip {
+      background: var(--red);
+      padding: 0.8rem 0; overflow: hidden;
+    }
+    .marquee-track {
+      display: flex; gap: 3rem;
+      animation: marquee 18s linear infinite; white-space: nowrap;
+    }
+    .marquee-item {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.82rem; font-weight: 700;
+      letter-spacing: 0.2em; text-transform: uppercase;
+      color: var(--white); flex-shrink: 0;
+      display: flex; align-items: center; gap: 1.5rem;
+    }
+    .marquee-item::after { content: '//'; opacity: 0.5; }
+    @keyframes marquee { from { transform: translateX(0); } to { transform: translateX(-50%); } }
+
+    /* ── SECTIONS ── */
+    section { padding: 5.5rem 4rem; }
+    .section-inner { max-width: 1100px; margin: 0 auto; }
+    .section-eyebrow {
+      display: inline-flex; align-items: center; gap: 0.8rem;
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.72rem; font-weight: 600;
+      letter-spacing: 0.25em; text-transform: uppercase;
+      color: var(--red); margin-bottom: 0.8rem;
+    }
+    .section-eyebrow::before { content: ''; width: 20px; height: 2px; background: var(--red); }
+    .section-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: clamp(2rem, 4vw, 3rem);
+      font-weight: 900; text-transform: uppercase;
+      letter-spacing: 0.03em; color: var(--white);
+      line-height: 1.05; margin-bottom: 1rem;
+    }
+    .section-title .red { color: var(--red); }
+    .section-body {
+      font-size: 0.95rem; font-weight: 300;
+      line-height: 1.9; color: var(--gray); max-width: 580px;
+    }
+
+    /* ── SERVICES ── */
+    #services { background: var(--dark); }
+
+    .services-grid {
+      display: grid; grid-template-columns: repeat(3, 1fr);
+      gap: 1.5rem; margin-top: 3rem;
+    }
+    .service-card {
+      background: var(--card);
+      border: 1px solid var(--border);
+      padding: 2.2rem 2rem;
+      position: relative; overflow: hidden;
+      transition: border-color 0.3s, transform 0.3s;
+    }
+    .service-card::before {
+      content: '';
+      position: absolute; top: 0; left: 0; right: 0; height: 3px;
+      background: var(--red); transform: scaleX(0); transform-origin: left;
+      transition: transform 0.35s;
+    }
+    .service-card:hover { border-color: rgba(232,48,42,0.4); transform: translateY(-4px); }
+    .service-card:hover::before { transform: scaleX(1); }
+
+    .service-num {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 3.5rem; font-weight: 900;
+      color: var(--border); line-height: 1;
+      margin-bottom: 1.2rem; user-select: none;
+    }
+    .service-name {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.3rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 0.05em;
+      color: var(--white); margin-bottom: 0.6rem;
+    }
+    .service-desc {
+      font-size: 0.85rem; font-weight: 300;
+      line-height: 1.8; color: var(--gray); margin-bottom: 1.2rem;
+    }
+    .service-tag {
+      display: inline-block;
+      background: rgba(232,48,42,0.1); color: var(--red);
+      font-size: 0.68rem; font-weight: 600;
+      letter-spacing: 0.15em; text-transform: uppercase;
+      padding: 0.3rem 0.8rem; border: 1px solid rgba(232,48,42,0.2);
+    }
+
+    /* ── WHY US ── */
+    #why { background: var(--black); }
+
+    .why-layout {
+      display: grid; grid-template-columns: 1fr 1fr;
+      gap: 5rem; align-items: center; margin-top: 3rem;
+    }
+
+    .why-grid {
+      display: grid; grid-template-columns: 1fr 1fr; gap: 1.2rem;
+    }
+    .why-card {
+      background: var(--card); border: 1px solid var(--border);
+      padding: 1.5rem;
+      transition: border-color 0.25s;
+    }
+    .why-card:hover { border-color: rgba(232,48,42,0.3); }
+    .why-card-line { width: 24px; height: 3px; background: var(--red); margin-bottom: 0.8rem; }
+    .why-card-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      color: var(--white); margin-bottom: 0.4rem;
+    }
+    .why-card-desc {
+      font-size: 0.78rem; font-weight: 300;
+      line-height: 1.7; color: var(--gray);
+    }
+
+    .why-right { }
+    .testimonial-block {
+      background: var(--card); border: 1px solid var(--border);
+      border-left: 3px solid var(--red); padding: 2rem;
+      margin-bottom: 1.5rem;
+    }
+    .testimonial-text {
+      font-size: 1rem; font-weight: 300;
+      line-height: 1.8; color: var(--gray);
+      font-style: italic; margin-bottom: 1rem;
+    }
+    .testimonial-author {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 0.85rem; font-weight: 700;
+      text-transform: uppercase; letter-spacing: 0.1em;
+      color: var(--white);
+    }
+    .testimonial-role { font-size: 0.72rem; color: var(--gray); margin-top: 0.15rem; }
+
+    /* ── BOOKING ── */
+    #booking { background: var(--dark); }
+
+    .booking-layout {
+      display: grid; grid-template-columns: 1fr 1.6fr;
+      gap: 5rem; align-items: start; margin-top: 3rem;
+    }
+
+    .booking-info { }
+    .info-row {
+      display: flex; gap: 1rem; align-items: flex-start;
+      margin-bottom: 1.5rem; padding-bottom: 1.5rem;
+      border-bottom: 1px solid var(--border);
+    }
+    .info-row:last-child { border-bottom: none; }
+    .info-icon {
+      width: 44px; height: 44px; flex-shrink: 0;
+      background: rgba(232,48,42,0.1);
+      border: 1px solid rgba(232,48,42,0.2);
+      display: flex; align-items: center; justify-content: center;
+    }
+    .info-icon svg { width: 18px; height: 18px; fill: var(--red); }
+    .info-label {
+      font-size: 0.65rem; font-weight: 600;
+      letter-spacing: 0.18em; text-transform: uppercase;
+      color: var(--red); margin-bottom: 0.25rem;
+    }
+    .info-value {
+      font-size: 0.92rem; font-weight: 400; color: var(--text); line-height: 1.5;
+    }
+    .info-value a { color: var(--text); text-decoration: none; }
+    .info-value a:hover { color: var(--red); }
+
+    .full-booking-card {
+      background: var(--card); border: 1px solid var(--border);
+      border-top: 3px solid var(--red); padding: 2.5rem;
+    }
+    .full-booking-title {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.4rem; font-weight: 800;
+      text-transform: uppercase; letter-spacing: 0.06em;
+      color: var(--white); margin-bottom: 0.3rem;
+    }
+    .full-booking-sub { font-size: 0.82rem; font-weight: 300; color: var(--gray); margin-bottom: 1.8rem; }
+
+    /* Calendar UI */
+    .cal-strip {
+      display: grid; grid-template-columns: repeat(7, 1fr);
+      gap: 0.4rem; margin-bottom: 1rem;
+    }
+    .cal-day {
+      padding: 0.6rem 0.3rem; text-align: center;
+      font-size: 0.72rem; font-weight: 500;
+      color: var(--gray); background: var(--dark);
+      border: 1px solid var(--border);
+      cursor: pointer; transition: all 0.2s;
+    }
+    .cal-day:hover { border-color: var(--red); color: var(--white); }
+    .cal-day.selected { background: var(--red); border-color: var(--red); color: var(--white); }
+    .cal-day.disabled { opacity: 0.3; cursor: default; }
+    .cal-day-label { font-size: 0.55rem; font-weight: 600; letter-spacing: 0.1em; color: var(--gray); margin-bottom: 0.2rem; text-transform: uppercase; }
+
+    .time-grid {
+      display: grid; grid-template-columns: repeat(4, 1fr);
+      gap: 0.4rem; margin-bottom: 1.2rem;
+    }
+    .time-slot {
+      padding: 0.6rem 0.3rem; text-align: center;
+      font-size: 0.75rem; font-weight: 500; color: var(--gray);
+      background: var(--dark); border: 1px solid var(--border);
+      cursor: pointer; transition: all 0.2s;
+    }
+    .time-slot:hover { border-color: var(--red); color: var(--white); }
+    .time-slot.selected { background: var(--red); border-color: var(--red); color: var(--white); }
+
+    /* ── FOOTER ── */
+    footer {
+      background: var(--black);
+      padding: 3rem 4rem;
+      display: flex; align-items: center; justify-content: space-between;
+      border-top: 3px solid var(--red); flex-wrap: wrap; gap: 1.5rem;
+    }
+    .footer-logo {
+      font-family: 'Barlow Condensed', sans-serif;
+      font-size: 1.2rem; font-weight: 800;
+      letter-spacing: 0.08em; text-transform: uppercase; color: var(--white);
+    }
+    .footer-logo span { color: var(--red); }
+    .footer-contact { font-size: 0.82rem; font-weight: 300; color: var(--gray); text-align: center; line-height: 1.8; }
+    .footer-contact a { color: var(--gray); text-decoration: none; }
+    .footer-contact a:hover { color: var(--red); }
+    .footer-copy { font-size: 0.65rem; color: #333; letter-spacing: 0.08em; }
+
+    /* ── REVEAL ── */
+    .reveal { opacity: 0; transform: translateY(22px); transition: opacity 0.7s ease, transform 0.7s ease; }
+    .reveal.visible { opacity: 1; transform: translateY(0); }
+
+    /* ── RESPONSIVE ── */
+    @media (max-width: 900px) {
+      nav { padding: 0 1.5rem; }
+      .nav-links { display: none; }
+      .hero { grid-template-columns: 1fr; padding: 5.5rem 1.5rem 3rem; }
+      .hero-geo { display: none; }
+      section { padding: 4rem 1.5rem; }
+      .services-grid { grid-template-columns: 1fr; }
+      .why-layout, .booking-layout { grid-template-columns: 1fr; gap: 3rem; }
+      footer { padding: 2rem 1.5rem; flex-direction: column; text-align: center; }
+    }
+  </style>
+</head>
+<body>
+
+  <!-- NAV -->
+  <nav>
+    <div class="nav-logo">Bally's <span>Auto</span> School</div>
+    <ul class="nav-links">
+      <li><a href="#services">Services</a></li>
+      <li><a href="#why">Why Us</a></li>
+      <li><a href="#booking">Book a Lesson</a></li>
+    </ul>
+    <a href="#booking" class="nav-cta">Book a Lesson</a>
+  </nav>
+
+  <!-- HERO -->
+  <section class="hero">
+    <div class="hero-geo"></div>
+    <div class="hero-accent"></div>
+    <div class="hero-road"></div>
+
+    <div class="hero-content">
+      <div class="hero-eyebrow">West Hempstead, Long Island</div>
+      <h1>Get Your<br><span class="red">License.</span><br><span class="outline">Drive</span><br>Confident.</h1>
+      <p class="hero-desc">
+        Bally's Auto School has been Long Island's trusted driving school for years — patient instructors, flexible scheduling, and a proven track record of first-time passes.
+      </p>
+      <div class="hero-actions">
+        <a href="#booking" class="btn-red">Book a Lesson</a>
+        <a href="#services" class="btn-ghost">View Programs</a>
+      </div>
+      <div class="hero-stats">
+        <div>
+          <div class="stat-num">1000<span>+</span></div>
+          <div class="stat-label">Students Licensed</div>
+        </div>
+        <div>
+          <div class="stat-num">5<span>★</span></div>
+          <div class="stat-label">Rated on Google</div>
+        </div>
+        <div>
+          <div class="stat-num">NY<span> State</span></div>
+          <div class="stat-label">Licensed & Certified</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="hero-right">
+      <div class="booking-card">
+        <div class="booking-title">Book a Lesson Online</div>
+        <div class="booking-sub">Pick your program, choose a time, done.</div>
+        <div class="form-group">
+          <label class="form-label">Program</label>
+          <select class="form-input">
+            <option>Driver Training (5 Lessons)</option>
+            <option>Driver Training (10 Lessons)</option>
+            <option>Defensive Driving</option>
+            <option>Road Test Prep</option>
+            <option>DMV Services</option>
+          </select>
+        </div>
+        <div class="form-row">
+          <div class="form-group">
+            <label class="form-label">First Name</label>
+            <input type="text" class="form-input" placeholder="John"/>
+          </div>
+          <div class="form-group">
+            <label class="form-label">Last Name</label>
+            <input type="text" class="form-input" placeholder="Smith"/>
+          </div>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Phone Number</label>
+          <input type="tel" class="form-input" placeholder="(516) 000-0000"/>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Preferred Day</label>
+          <select class="form-input">
+            <option>Monday</option>
+            <option>Tuesday</option>
+            <option>Wednesday</option>
+            <option>Thursday</option>
+            <option>Friday</option>
+            <option>Saturday</option>
+          </select>
+        </div>
+        <div class="form-group">
+          <label class="form-label">Preferred Time</label>
+          <select class="form-input">
+            <option>Morning (8AM – 12PM)</option>
+            <option>Afternoon (12PM – 4PM)</option>
+            <option>Evening (4PM – 7PM)</option>
+          </select>
+        </div>
+        <button class="btn-book" onclick="alert('Request received! We will confirm your lesson within 24 hours.')">Request Lesson</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- MARQUEE -->
+  <div class="marquee-strip">
+    <div class="marquee-track">
+      <span class="marquee-item">Driver Training</span>
+      <span class="marquee-item">Defensive Driving</span>
+      <span class="marquee-item">Road Test Prep</span>
+      <span class="marquee-item">DMV Services</span>
+      <span class="marquee-item">Online Courses</span>
+      <span class="marquee-item">Charter Schools</span>
+      <span class="marquee-item">Driver Training</span>
+      <span class="marquee-item">Defensive Driving</span>
+      <span class="marquee-item">Road Test Prep</span>
+      <span class="marquee-item">DMV Services</span>
+      <span class="marquee-item">Online Courses</span>
+      <span class="marquee-item">Charter Schools</span>
+    </div>
+  </div>
+
+  <!-- SERVICES -->
+  <section id="services">
+    <div class="section-inner">
+      <div class="section-eyebrow reveal">What We Offer</div>
+      <h2 class="section-title reveal">Everything You Need<br>to <span class="red">Hit the Road</span></h2>
+      <div class="services-grid">
+        <div class="service-card reveal">
+          <div class="service-num">01</div>
+          <div class="service-name">Driver Training</div>
+          <p class="service-desc">Our core program covers everything from basic vehicle operation to highway driving. Available for teens and adults at all experience levels.</p>
+          <span class="service-tag">Most Popular</span>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-num">02</div>
+          <div class="service-name">Defensive Driving</div>
+          <p class="service-desc">Advanced techniques to keep you and others safe on the road. NYS-approved course — may reduce your insurance premium and remove points from your license.</p>
+          <span class="service-tag">Insurance Discount</span>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-num">03</div>
+          <div class="service-name">Road Test Prep</div>
+          <p class="service-desc">Targeted preparation for your NYS road test. Our instructors know exactly what examiners look for — maximize your chances of passing the first time.</p>
+          <span class="service-tag">First-Time Pass</span>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-num">04</div>
+          <div class="service-name">Online Driver Training</div>
+          <p class="service-desc">Complete your 5-hour pre-licensing course entirely online at your own pace. NYS approved and accepted at all DMV locations.</p>
+          <span class="service-tag">Available Online</span>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-num">05</div>
+          <div class="service-name">DMV Services</div>
+          <p class="service-desc">We assist with DMV paperwork, permit tests, and licensing requirements — saving you time and the headache of figuring it out alone.</p>
+          <span class="service-tag">We Handle It</span>
+        </div>
+        <div class="service-card reveal">
+          <div class="service-num">06</div>
+          <div class="service-name">Charter Schools Program</div>
+          <p class="service-desc">Partnered driving education programs available for schools and organizations. Contact us to discuss customized group training packages.</p>
+          <span class="service-tag">Group Rates</span>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY US -->
+  <section id="why">
+    <div class="section-inner">
+      <div class="section-eyebrow reveal">Why Choose Us</div>
+      <h2 class="section-title reveal">Long Island's Most<br><span class="red">Trusted</span> Driving School</h2>
+      <div class="why-layout">
+        <div class="why-grid reveal">
+          <div class="why-card">
+            <div class="why-card-line"></div>
+            <div class="why-card-title">NY State Licensed</div>
+            <p class="why-card-desc">Fully licensed and certified by New York State. All courses meet DMV requirements.</p>
+          </div>
+          <div class="why-card">
+            <div class="why-card-line"></div>
+            <div class="why-card-title">Patient Instructors</div>
+            <p class="why-card-desc">Our instructors are known for patience and encouragement — especially for nervous first-time drivers.</p>
+          </div>
+          <div class="why-card">
+            <div class="why-card-line"></div>
+            <div class="why-card-title">Flexible Scheduling</div>
+            <p class="why-card-desc">Morning, afternoon, and evening slots available. Weekends too.</p>
+          </div>
+          <div class="why-card">
+            <div class="why-card-line"></div>
+            <div class="why-card-title">Affordable Pricing</div>
+            <p class="why-card-desc">Competitive rates with no hidden fees. Quality instruction shouldn't break the bank.</p>
+          </div>
+          <div class="why-card">
+            <div class="why-card-line"></div>
+            <div class="why-card-title">All Ages Welcome</div>
+            <p class="why-card-desc">Teens getting their first license or adults who never learned — we teach everyone.</p>
+          </div>
+          <div class="why-card">
+            <div class="why-card-line"></div>
+            <div class="why-card-title">Wide Service Area</div>
+            <p class="why-card-desc">Serving West Hempstead, Mineola, and throughout Long Island.</p>
+          </div>
+        </div>
+        <div class="why-right reveal">
+          <div class="testimonial-block">
+            <p class="testimonial-text">"I was so nervous before my road test but my instructor made me feel completely prepared. Passed on my first try. Highly recommend Bally's to anyone learning to drive."</p>
+            <div class="testimonial-author">Long Island Student</div>
+            <div class="testimonial-role">Passed First Attempt</div>
+          </div>
+          <div class="testimonial-block">
+            <p class="testimonial-text">"Best driving school on Long Island. The instructors are patient, professional, and actually care about making you a safe driver — not just getting you through the test."</p>
+            <div class="testimonial-author">West Hempstead Resident</div>
+            <div class="testimonial-role">Adult Student</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- BOOKING -->
+  <section id="booking">
+    <div class="section-inner">
+      <div class="section-eyebrow reveal">Get Started</div>
+      <h2 class="section-title reveal">Book Your Lesson<br><span class="red">Online — Right Now</span></h2>
+      <div class="booking-layout">
+        <div class="reveal">
+          <div class="info-row">
+            <div class="info-icon">
+              <svg viewBox="0 0 24 24"><path d="M6.62 10.79c1.44 2.83 3.76 5.14 6.59 6.59l2.2-2.2c.27-.27.67-.36 1.02-.24 1.12.37 2.33.57 3.57.57.55 0 1 .45 1 1V20c0 .55-.45 1-1 1-9.39 0-17-7.61-17-17 0-.55.45-1 1-1h3.5c.55 0 1 .45 1 1 0 1.25.2 2.45.57 3.57.11.35.03.74-.25 1.02l-2.2 2.2z"/></svg>
+            </div>
+            <div>
+              <div class="info-label">Phone</div>
+              <div class="info-value"><a href="tel:5165382555">(516) 538-2555</a></div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon">
+              <svg viewBox="0 0 24 24"><path d="M20 4H4c-1.1 0-2 .9-2 2v12c0 1.1.9 2 2 2h16c1.1 0 2-.9 2-2V6c0-1.1-.9-2-2-2zm0 4l-8 5-8-5V6l8 5 8-5v2z"/></svg>
+            </div>
+            <div>
+              <div class="info-label">Email</div>
+              <div class="info-value"><a href="mailto:Ballys13@aol.com">Ballys13@aol.com</a></div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon">
+              <svg viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+            </div>
+            <div>
+              <div class="info-label">Address</div>
+              <div class="info-value">396B Willis Ave<br>Mineola, NY 11501</div>
+            </div>
+          </div>
+          <div class="info-row">
+            <div class="info-icon">
+              <svg viewBox="0 0 24 24"><path d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm.5-13H11v6l5.25 3.15.75-1.23-4.5-2.67V7z"/></svg>
+            </div>
+            <div>
+              <div class="info-label">Availability</div>
+              <div class="info-value">Mon – Sat: Morning, Afternoon & Evening slots available</div>
+            </div>
+          </div>
+        </div>
+
+        <div class="full-booking-card reveal">
+          <div class="full-booking-title">Schedule Your Lesson</div>
+          <div class="full-booking-sub">Pick a date and time that works for you — instantly confirmed.</div>
+          <!-- Calendly inline widget -->
+          <div class="calendly-inline-widget" data-url="https://calendly.com/ballysautoschool/driving-lesson?hide_landing_page_details=1&hide_gdpr_banner=1&background_color=1a1d24&text_color=e8eaf0&primary_color=e8302a" style="min-width:100%;height:630px;"></div>
+          <script type="text/javascript" src="https://assets.calendly.com/assets/external/widget.js" async></script>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- FOOTER -->
+  <footer>
+    <div class="footer-logo">Bally's <span>Auto</span> School</div>
+    <div class="footer-contact">
+      396B Willis Ave, Mineola, NY 11501<br/>
+      <a href="tel:5165382555">(516) 538-2555</a> · <a href="mailto:Ballys13@aol.com">Ballys13@aol.com</a>
+    </div>
+    <div class="footer-copy">© 2026 Bally's Auto School · All Rights Reserved</div>
+  </footer>
+
+  <script>
+    const observer = new IntersectionObserver(entries => {
+      entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
+    }, { threshold: 0.08 });
+    document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+  </script>
+</body>
+</html>
