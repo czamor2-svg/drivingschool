@@ -32,8 +32,7 @@
       background: rgba(10,10,10,0.95); backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
     }
-    .nav-logo { font-family: 'Barlow Condensed', sans-serif; font-size: 1.3rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--white); }
-    .nav-logo span { color: var(--red); }
+    .nav-logo img { height: 42px; width: auto; object-fit: contain; }
     .nav-links { display: flex; gap: 2.5rem; list-style: none; }
     .nav-links a { font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray); text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover { color: var(--white); }
@@ -71,7 +70,6 @@
     .stat-num span { color: var(--red); }
     .stat-label { font-size: 0.72rem; font-weight: 400; letter-spacing: 0.1em; color: var(--gray); text-transform: uppercase; margin-top: 0.3rem; }
 
-    /* HERO CALENDLY */
     .hero-calendar { position: relative; z-index: 2; }
     .cal-card { background: var(--card); border: 1px solid var(--border); border-top: 3px solid var(--red); }
     .cal-card-header { padding: 1.4rem 1.8rem 0; }
@@ -94,8 +92,18 @@
     .section-title .red { color: var(--red); }
     .section-body { font-size: 0.95rem; font-weight: 300; line-height: 1.9; color: var(--gray); max-width: 580px; }
 
+    /* ABOUT */
+    #about { background: var(--dark); }
+    .about-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; margin-top: 3rem; }
+    .about-text p { font-size: 0.95rem; font-weight: 300; line-height: 1.9; color: var(--gray); margin-bottom: 1.2rem; }
+    .about-stats { display: grid; grid-template-columns: 1fr 1fr; gap: 1rem; }
+    .about-stat { background: var(--card); border: 1px solid var(--border); border-left: 3px solid var(--red); padding: 1.2rem 1.5rem; }
+    .about-stat-num { font-family: 'Barlow Condensed', sans-serif; font-size: 2rem; font-weight: 900; color: var(--white); line-height: 1; }
+    .about-stat-num span { color: var(--red); }
+    .about-stat-label { font-size: 0.7rem; font-weight: 400; letter-spacing: 0.1em; text-transform: uppercase; color: var(--gray); margin-top: 0.3rem; }
+
     /* SERVICES */
-    #services { background: var(--dark); }
+    #services { background: var(--black); }
     .services-grid { display: grid; grid-template-columns: repeat(3, 1fr); gap: 1.5rem; margin-top: 3rem; }
     .service-card { background: var(--card); border: 1px solid var(--border); padding: 2.2rem 2rem; position: relative; overflow: hidden; transition: border-color 0.3s, transform 0.3s; }
     .service-card::before { content: ''; position: absolute; top: 0; left: 0; right: 0; height: 3px; background: var(--red); transform: scaleX(0); transform-origin: left; transition: transform 0.35s; }
@@ -105,6 +113,13 @@
     .service-name { font-family: 'Barlow Condensed', sans-serif; font-size: 1.3rem; font-weight: 800; text-transform: uppercase; letter-spacing: 0.05em; color: var(--white); margin-bottom: 0.6rem; }
     .service-desc { font-size: 0.85rem; font-weight: 300; line-height: 1.8; color: var(--gray); margin-bottom: 1.2rem; }
     .service-tag { display: inline-block; background: rgba(232,48,42,0.1); color: var(--red); font-size: 0.68rem; font-weight: 600; letter-spacing: 0.15em; text-transform: uppercase; padding: 0.3rem 0.8rem; border: 1px solid rgba(232,48,42,0.2); }
+
+    /* SERVICE AREA */
+    #area { background: var(--dark); }
+    .area-layout { display: grid; grid-template-columns: 1fr 1fr; gap: 5rem; align-items: center; margin-top: 3rem; }
+    .area-list { list-style: none; display: grid; grid-template-columns: 1fr 1fr; gap: 0.6rem; }
+    .area-list li { font-size: 0.88rem; font-weight: 400; color: var(--gray); padding: 0.6rem 0.8rem; background: var(--card); border: 1px solid var(--border); display: flex; align-items: center; gap: 0.6rem; }
+    .area-list li::before { content: ''; width: 6px; height: 6px; background: var(--red); border-radius: 50%; flex-shrink: 0; }
 
     /* WHY */
     #why { background: var(--black); }
@@ -120,19 +135,30 @@
     .testimonial-author { font-family: 'Barlow Condensed', sans-serif; font-size: 0.85rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--white); }
     .testimonial-role { font-size: 0.72rem; color: var(--gray); margin-top: 0.15rem; }
 
+    /* FAQ */
+    #faq { background: var(--dark); }
+    .faq-list { margin-top: 3rem; display: flex; flex-direction: column; gap: 1rem; max-width: 780px; }
+    .faq-item { background: var(--card); border: 1px solid var(--border); }
+    .faq-question { padding: 1.4rem 1.8rem; font-family: 'Barlow Condensed', sans-serif; font-size: 1.05rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em; color: var(--white); cursor: pointer; display: flex; justify-content: space-between; align-items: center; user-select: none; }
+    .faq-question:hover { color: var(--red); }
+    .faq-icon { font-size: 1.2rem; color: var(--red); transition: transform 0.3s; flex-shrink: 0; }
+    .faq-item.open .faq-icon { transform: rotate(45deg); }
+    .faq-answer { max-height: 0; overflow: hidden; transition: max-height 0.4s ease, padding 0.3s; }
+    .faq-item.open .faq-answer { max-height: 300px; }
+    .faq-answer-inner { padding: 0 1.8rem 1.4rem; font-size: 0.88rem; font-weight: 300; line-height: 1.9; color: var(--gray); border-top: 1px solid var(--border); padding-top: 1rem; }
+
     /* CONTACT */
-    #contact { background: var(--dark); }
+    #contact { background: var(--black); }
     .contact-grid { display: grid; grid-template-columns: repeat(4, 1fr); gap: 1.5rem; margin-top: 3rem; }
     .contact-card { background: var(--card); border: 1px solid var(--border); padding: 1.8rem; }
     .contact-card-label { font-size: 0.65rem; font-weight: 600; letter-spacing: 0.18em; text-transform: uppercase; color: var(--red); margin-bottom: 0.4rem; }
-    .contact-card-value { font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 700; color: var(--white); line-height: 1.3; }
+    .contact-card-value { font-family: 'Barlow Condensed', sans-serif; font-size: 1rem; font-weight: 700; color: var(--white); line-height: 1.4; }
     .contact-card-value a { color: var(--white); text-decoration: none; }
     .contact-card-value a:hover { color: var(--red); }
 
     /* FOOTER */
     footer { background: var(--black); padding: 3rem 4rem; display: flex; align-items: center; justify-content: space-between; border-top: 3px solid var(--red); flex-wrap: wrap; gap: 1.5rem; }
-    .footer-logo { font-family: 'Barlow Condensed', sans-serif; font-size: 1.2rem; font-weight: 800; letter-spacing: 0.08em; text-transform: uppercase; color: var(--white); }
-    .footer-logo span { color: var(--red); }
+    .footer-logo img { height: 38px; width: auto; filter: brightness(0) invert(1); }
     .footer-contact { font-size: 0.82rem; font-weight: 300; color: var(--gray); text-align: center; line-height: 1.8; }
     .footer-contact a { color: var(--gray); text-decoration: none; }
     .footer-contact a:hover { color: var(--red); }
@@ -150,7 +176,7 @@
       .hero-geo { display: none; }
       section { padding: 4rem 1.5rem; }
       .services-grid, .contact-grid { grid-template-columns: 1fr; }
-      .why-layout { grid-template-columns: 1fr; gap: 3rem; }
+      .about-layout, .area-layout, .why-layout { grid-template-columns: 1fr; gap: 3rem; }
       footer { padding: 2rem 1.5rem; flex-direction: column; text-align: center; }
     }
   </style>
@@ -158,11 +184,15 @@
 <body>
 
   <nav>
-    <div class="nav-logo">Bally's <span>Auto</span> School</div>
+    <div class="nav-logo">
+      <img src="https://lirp.cdn-website.com/c0ee8432/dms3rep/multi/opt/Bally-s+Cropped-571w.png" alt="Bally's Auto School"/>
+    </div>
     <ul class="nav-links">
+      <li><a href="#about">About</a></li>
       <li><a href="#services">Services</a></li>
       <li><a href="#why">Why Us</a></li>
-      <li><a href="#booking">Book a Lesson</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#booking">Book</a></li>
     </ul>
     <a href="#booking" class="nav-cta">Book a Lesson</a>
   </nav>
@@ -176,7 +206,7 @@
     <div class="hero-content">
       <div class="hero-eyebrow">West Hempstead, Long Island</div>
       <h1>Get Your<br><span class="red">License.</span><br><span class="outline">Drive</span><br>Confident.</h1>
-      <p class="hero-desc">Bally's Auto School has been Long Island's trusted driving school for years — patient instructors, flexible scheduling, and a proven track record of first-time passes.</p>
+      <p class="hero-desc">Bally's Auto School — Long Island's trusted driving school. Patient instructors, flexible scheduling, and a proven track record of first-time passes.</p>
       <div class="hero-actions">
         <a href="#booking" class="btn-red">Book a Lesson</a>
         <a href="#services" class="btn-ghost">View Programs</a>
@@ -207,15 +237,51 @@
       <span class="marquee-item">Road Test Prep</span>
       <span class="marquee-item">DMV Services</span>
       <span class="marquee-item">Online Courses</span>
+      <span class="marquee-item">Sample Tests</span>
       <span class="marquee-item">Charter Schools</span>
       <span class="marquee-item">Driver Training</span>
       <span class="marquee-item">Defensive Driving</span>
       <span class="marquee-item">Road Test Prep</span>
       <span class="marquee-item">DMV Services</span>
       <span class="marquee-item">Online Courses</span>
+      <span class="marquee-item">Sample Tests</span>
       <span class="marquee-item">Charter Schools</span>
     </div>
   </div>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="section-inner">
+      <div class="section-eyebrow reveal">Who We Are</div>
+      <h2 class="section-title reveal">West Hempstead's <span class="red">Finest</span><br>Driving School</h2>
+      <div class="about-layout">
+        <div class="about-text reveal">
+          <p>Bally's Auto School is one of the top driving schools on Long Island. Our fully-licensed driving school serves hundreds of students each year and is trusted by adults and teenagers alike to provide a patient, courteous, and informed driving experience.</p>
+          <p>Our instructors have built lasting relationships with many different school districts across Long Island and have provided successful driver's training to thousands of students. That experience makes us unmatched in our knowledge of local traffic laws and regulations.</p>
+          <p>Safety is our number one priority. We provide you with the tools, skills, and awareness that will help you become a safe and effective driver no matter where you find yourself on your journey.</p>
+          <a href="#booking" class="btn-red" style="display:inline-block;margin-top:1.2rem;">Get Started Today</a>
+        </div>
+        <div class="about-stats reveal">
+          <div class="about-stat">
+            <div class="about-stat-num">1000<span>+</span></div>
+            <div class="about-stat-label">Students Licensed</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-num">NY<span> #1</span></div>
+            <div class="about-stat-label">State Licensed School</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-num">All<span> Ages</span></div>
+            <div class="about-stat-label">Teens & Adults Welcome</div>
+          </div>
+          <div class="about-stat">
+            <div class="about-stat-num">LI<span> Wide</span></div>
+            <div class="about-stat-label">Service Area</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
 
   <!-- SERVICES -->
   <section id="services">
@@ -226,39 +292,65 @@
         <div class="service-card reveal">
           <div class="service-num">01</div>
           <div class="service-name">Driver Training</div>
-          <p class="service-desc">Our core program covers everything from basic vehicle operation to highway driving. Available for teens and adults at all experience levels.</p>
+          <p class="service-desc">Apply the Rules of the Road with our Driver Training classes. Taught the latest skills and techniques for safe driving — for all ages, all experience levels.</p>
           <span class="service-tag">Most Popular</span>
         </div>
         <div class="service-card reveal">
           <div class="service-num">02</div>
           <div class="service-name">Defensive Driving</div>
-          <p class="service-desc">NYS-approved course that may reduce your insurance premium and remove points from your license. Advanced techniques for safer driving.</p>
+          <p class="service-desc">NYS-approved course that may reduce your insurance premium and remove points from your license. Advanced techniques for safer driving on any road.</p>
           <span class="service-tag">Insurance Discount</span>
         </div>
         <div class="service-card reveal">
           <div class="service-num">03</div>
           <div class="service-name">Road Test Prep</div>
-          <p class="service-desc">Targeted preparation for your NYS road test. Our instructors know exactly what examiners look for — maximize your chances of passing first time.</p>
+          <p class="service-desc">Targeted preparation for your NYS road test. Our instructors know exactly what examiners look for — maximize your chances of passing the first time.</p>
           <span class="service-tag">First-Time Pass</span>
         </div>
         <div class="service-card reveal">
           <div class="service-num">04</div>
           <div class="service-name">Online Driver Training</div>
-          <p class="service-desc">Complete your 5-hour pre-licensing course entirely online at your own pace. NYS approved and accepted at all DMV locations.</p>
+          <p class="service-desc">Complete your 5-hour pre-licensing course entirely online at your own pace. NYS approved and accepted at all DMV locations statewide.</p>
           <span class="service-tag">Available Online</span>
         </div>
         <div class="service-card reveal">
           <div class="service-num">05</div>
-          <div class="service-name">DMV Services</div>
-          <p class="service-desc">We assist with DMV paperwork, permit tests, and licensing requirements — saving you time and the headache of figuring it out alone.</p>
+          <div class="service-name">DMV Services & Sample Tests</div>
+          <p class="service-desc">We assist with DMV paperwork, permit tests, sample practice tests, and all licensing requirements — saving you time and confusion.</p>
           <span class="service-tag">We Handle It</span>
         </div>
         <div class="service-card reveal">
           <div class="service-num">06</div>
           <div class="service-name">Charter Schools Program</div>
-          <p class="service-desc">Partnered driving education programs available for schools and organizations. Contact us for customized group training packages.</p>
+          <p class="service-desc">Partnered driving education programs for schools and organizations. We have built relationships with many Long Island school districts.</p>
           <span class="service-tag">Group Rates</span>
         </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- SERVICE AREA -->
+  <section id="area">
+    <div class="section-inner">
+      <div class="section-eyebrow reveal">Where We Operate</div>
+      <h2 class="section-title reveal">Covering an Expansive<br><span class="red">Service Area</span></h2>
+      <div class="area-layout">
+        <div class="reveal">
+          <p class="section-body" style="margin-bottom:1.8rem;">Our business is driving — so we cover a wide area for our students. We take you throughout the city and surrounding rural areas for experience in different environments and conditions. We know that driving in New York can be challenging, and we prepare you for all of it.</p>
+          <a href="#booking" class="btn-red" style="display:inline-block;">Book in Your Area</a>
+        </div>
+        <ul class="area-list reveal">
+          <li>West Hempstead</li>
+          <li>Mineola</li>
+          <li>Garden City</li>
+          <li>Hempstead</li>
+          <li>Valley Stream</li>
+          <li>Lynbrook</li>
+          <li>Rockville Centre</li>
+          <li>Uniondale</li>
+          <li>Elmont</li>
+          <li>All of Long Island</li>
+        </ul>
       </div>
     </div>
   </section>
@@ -273,9 +365,9 @@
           <div class="why-card"><div class="why-card-line"></div><div class="why-card-title">NY State Licensed</div><p class="why-card-desc">Fully licensed and certified by New York State. All courses meet DMV requirements.</p></div>
           <div class="why-card"><div class="why-card-line"></div><div class="why-card-title">Patient Instructors</div><p class="why-card-desc">Known for patience and encouragement — especially for nervous first-time drivers.</p></div>
           <div class="why-card"><div class="why-card-line"></div><div class="why-card-title">Flexible Scheduling</div><p class="why-card-desc">Morning, afternoon, and evening slots available. Weekends too.</p></div>
-          <div class="why-card"><div class="why-card-line"></div><div class="why-card-title">Affordable Pricing</div><p class="why-card-desc">Competitive rates with no hidden fees. Quality instruction at the right price.</p></div>
+          <div class="why-card"><div class="why-card-line"></div><div class="why-card-title">Affordable Pricing</div><p class="why-card-desc">Competitive rates with no hidden fees. Do not be tempted by those who undercut on quality.</p></div>
           <div class="why-card"><div class="why-card-line"></div><div class="why-card-title">All Ages Welcome</div><p class="why-card-desc">Teens getting their first license or adults who never learned — we teach everyone.</p></div>
-          <div class="why-card"><div class="why-card-line"></div><div class="why-card-title">Wide Service Area</div><p class="why-card-desc">Serving West Hempstead, Mineola, and throughout Long Island.</p></div>
+          <div class="why-card"><div class="why-card-line"></div><div class="why-card-title">School District Relationships</div><p class="why-card-desc">Built trusted partnerships with many Long Island school districts over the years.</p></div>
         </div>
         <div class="reveal">
           <div class="testimonial-block">
@@ -294,15 +386,45 @@
     </div>
   </section>
 
+  <!-- FAQ -->
+  <section id="faq">
+    <div class="section-inner">
+      <div class="section-eyebrow reveal">Common Questions</div>
+      <h2 class="section-title reveal">Frequently Asked <span class="red">Questions</span></h2>
+      <div class="faq-list reveal">
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">What kinds of driving techniques do you teach? <span class="faq-icon">+</span></div>
+          <div class="faq-answer"><div class="faq-answer-inner">At Bally's Auto School, we instruct about many different techniques at no additional charge. These include defensive driving methods, fuel-saving techniques, highway driving, and urban navigation. We take safety seriously and pride ourselves on teaching you the safest driving techniques to get the results you want.</div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">Can you evaluate my current driving skills? <span class="faq-icon">+</span></div>
+          <div class="faq-answer"><div class="faq-answer-inner">Yes. We offer company driver evaluations and will bring you up to date on the newest laws and techniques. Whether you are a new driver or an experienced one looking to sharpen your skills, we can assess where you are and build a plan from there.</div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">Do you offer online courses? <span class="faq-icon">+</span></div>
+          <div class="faq-answer"><div class="faq-answer-inner">Yes. We offer the NYS-required 5-hour pre-licensing course entirely online. You can complete it at your own pace from any device. The course is fully NYS approved and accepted at all DMV locations statewide.</div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">Do you offer sample DMV permit tests? <span class="faq-icon">+</span></div>
+          <div class="faq-answer"><div class="faq-answer-inner">Yes. We provide sample tests to help students prepare for their DMV permit exam. Our team is also available to assist with DMV paperwork and all licensing requirements to make the process as smooth as possible.</div></div>
+        </div>
+        <div class="faq-item">
+          <div class="faq-question" onclick="toggleFaq(this)">How do I book a lesson? <span class="faq-icon">+</span></div>
+          <div class="faq-answer"><div class="faq-answer-inner">You can book a lesson directly on this page using our online scheduling system — just scroll to the top and pick a date and time that works for you. You can also call us at (516) 538-2555 or (516) 439-0550, or email Ballys13@aol.com.</div></div>
+        </div>
+      </div>
+    </div>
+  </section>
+
   <!-- CONTACT -->
   <section id="contact">
     <div class="section-inner">
-      <div class="section-eyebrow reveal">Get in Touch</div>
-      <h2 class="section-title reveal">We're Here to <span class="red">Help</span></h2>
+      <div class="section-eyebrow reveal">Reach Us</div>
+      <h2 class="section-title reveal">Get in <span class="red">Touch</span></h2>
       <div class="contact-grid">
         <div class="contact-card reveal">
           <div class="contact-card-label">Phone</div>
-          <div class="contact-card-value"><a href="tel:5165382555">(516) 538-2555</a></div>
+          <div class="contact-card-value"><a href="tel:5165382555">(516) 538-2555</a><br><a href="tel:5164390550">(516) 439-0550</a></div>
         </div>
         <div class="contact-card reveal">
           <div class="contact-card-label">Email</div>
@@ -313,8 +435,8 @@
           <div class="contact-card-value">396B Willis Ave<br>Mineola, NY 11501</div>
         </div>
         <div class="contact-card reveal">
-          <div class="contact-card-label">Hours</div>
-          <div class="contact-card-value">Mon – Sat<br>Morning, Afternoon & Evening</div>
+          <div class="contact-card-label">Book Online</div>
+          <div class="contact-card-value"><a href="#booking">Scroll to top to schedule your lesson instantly</a></div>
         </div>
       </div>
     </div>
@@ -322,8 +444,13 @@
 
   <!-- FOOTER -->
   <footer>
-    <div class="footer-logo">Bally's <span>Auto</span> School</div>
-    <div class="footer-contact">396B Willis Ave, Mineola, NY 11501<br/><a href="tel:5165382555">(516) 538-2555</a> · <a href="mailto:Ballys13@aol.com">Ballys13@aol.com</a></div>
+    <div class="footer-logo">
+      <img src="https://lirp.cdn-website.com/c0ee8432/dms3rep/multi/opt/Bally-s+Cropped-571w.png" alt="Bally's Auto School"/>
+    </div>
+    <div class="footer-contact">
+      396B Willis Ave, Mineola, NY 11501<br/>
+      <a href="tel:5165382555">(516) 538-2555</a> · <a href="tel:5164390550">(516) 439-0550</a> · <a href="mailto:Ballys13@aol.com">Ballys13@aol.com</a>
+    </div>
     <div class="footer-copy">© 2026 Bally's Auto School · All Rights Reserved</div>
   </footer>
 
@@ -332,6 +459,11 @@
       entries.forEach(e => { if (e.isIntersecting) e.target.classList.add('visible'); });
     }, { threshold: 0.08 });
     document.querySelectorAll('.reveal').forEach(el => observer.observe(el));
+
+    function toggleFaq(el) {
+      const item = el.parentElement;
+      item.classList.toggle('open');
+    }
   </script>
 </body>
 </html>
