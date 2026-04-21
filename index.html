@@ -32,7 +32,10 @@
       background: rgba(10,10,10,0.95); backdrop-filter: blur(12px);
       border-bottom: 1px solid var(--border);
     }
-    .nav-logo img { height: 42px; width: auto; object-fit: contain; }
+    .nav-logo { display: flex; align-items: center; gap: 0.8rem; }
+    .nav-logo img { height: 38px; width: auto; object-fit: contain; }
+    .nav-logo-text { font-family: 'Barlow Condensed', sans-serif; font-size: 1.1rem; font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; color: var(--white); }
+    .nav-logo-text .red { color: var(--red); }
     .nav-links { display: flex; gap: 2.5rem; list-style: none; }
     .nav-links a { font-size: 0.82rem; font-weight: 500; letter-spacing: 0.08em; text-transform: uppercase; color: var(--gray); text-decoration: none; transition: color 0.2s; }
     .nav-links a:hover { color: var(--white); }
@@ -186,6 +189,7 @@
   <nav>
     <div class="nav-logo">
       <img src="https://lirp.cdn-website.com/c0ee8432/dms3rep/multi/opt/Bally-s+Cropped-571w.png" alt="Bally's Auto School"/>
+      <span class="nav-logo-text">Bally's <span class="red">Auto</span> School</span>
     </div>
     <ul class="nav-links">
       <li><a href="#about">About</a></li>
